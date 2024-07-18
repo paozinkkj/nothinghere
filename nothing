@@ -1,0 +1,173 @@
+GUIEditor = {
+    tab = {},
+    tabpanel = {},
+    label = {},
+    button = {},
+    window = {},
+    memo = {}
+}
+local ativo = false
+local memo
+local memo2
+function paolua()
+    if ativo == false then
+        ativo = true
+        showCursor(true)  
+        GUIEditor.window[1] = guiCreateWindow(0.71, 0.54, 0.29, 0.42, "Lua Dev Panel", true)
+        guiWindowSetSizable(GUIEditor.window[1], false)
+        GUIEditor.tabpanel[1] = guiCreateTabPanel(0.04, 0.12, 0.94, 0.85, true, GUIEditor.window[1])
+        GUIEditor.tab[1] = guiCreateTab("Get Trigger", GUIEditor.tabpanel[1])
+        memo = guiCreateMemo(0.02, 0.04, 0.97, 0.92, "By Paozin Do Mta YT", true, GUIEditor.tab[1])
+        GUIEditor.tab[2] = guiCreateTab("Lua Executor", GUIEditor.tabpanel[1])
+        memo2 = guiCreateMemo(0.03, 0.06, 0.95, 0.72, "Insira o código aqui!!", true, GUIEditor.tab[2])
+        GUIEditor.button[1] = guiCreateButton(0.07, 0.82, 0.84, 0.14, "Executar!!", true, GUIEditor.tab[2])
+        guiSetFont(GUIEditor.button[1], "default-bold-small")
+        guiSetProperty(GUIEditor.button[1], "NormalTextColour", "FF23FE00")
+        addEventHandler('onClientGUIClick', GUIEditor.button[1], lua, false)
+        GUIEditor.tab[3] = guiCreateTab("Misc", GUIEditor.tabpanel[1])
+        GUIEditor.button[2] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "Puxar Vida", true, GUIEditor.tab[3])
+        GUIEditor.button[3] = guiCreateButton(0.02, 0.45, 0.35, 0.14, "Puxar Colete", true, GUIEditor.tab[3])
+        GUIEditor.button[4] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "Fuck ID", true, GUIEditor.tab[3])
+        GUIEditor.button[5] = guiCreateButton(0.62, 0.45, 0.35, 0.14, "Kill All", true, GUIEditor.tab[3])
+        GUIEditor.label[1] = guiCreateLabel(0.10, 0.15, 0.21, 0.08, "Local Player", true, GUIEditor.tab[3])
+        guiLabelSetColor(GUIEditor.label[1], 35, 254, 0)
+        GUIEditor.label[2] = guiCreateLabel(0.70, 0.15, 0.21, 0.08, "Server Fuck", true, GUIEditor.tab[3])
+        guiLabelSetColor(GUIEditor.label[2], 35, 254, 0)
+        GUIEditor.label[3] = guiCreateLabel(0.82, 0.22, 0.23, 0.06, "(alguns servers)", true, GUIEditor.tab[3])
+        guiSetFont(GUIEditor.label[3], "default-small")
+        guiLabelSetColor(GUIEditor.label[3], 255, 0, 0)
+        addEventHandler('onClientGUIClick', GUIEditor.button[2], vida, false)
+        addEventHandler('onClientGUIClick', GUIEditor.button[3], colete, false)
+        addEventHandler('onClientGUIClick', GUIEditor.button[4], fuck, false)
+        addEventHandler('onClientGUIClick', GUIEditor.button[5], kill, false)
+    else
+        ativo = false
+        showCursor(false)  
+        guiSetVisible(GUIEditor.window[1], false)
+    end
+end
+bindKey('end', 'down',  paolua)
+function toggleMemo()
+    addDebugHook("preFunction", function(sourceResource, functionName, isAllowedByACL, luaFilename, luaLineNumber, ...)
+        local args = {...}
+        local triggerInfo = "Função: " .. tostring(functionName) .. "\n"
+        triggerInfo = triggerInfo .. "Arquivo de onde veio: " .. luaFilename .. "\n"
+        triggerInfo = triggerInfo .. "Linha onde é localizada: " .. luaLineNumber .. "\n"
+        triggerInfo = triggerInfo .. "Trigger: " .. inspect(args) .. "\n\n"
+        if memo == nil then
+            memo = guiCreateMemo(0, 0, 500, 500, "", false)
+            guiBringToFront(memo)
+        end
+        local currentText = guiGetText(memo)
+        guiSetText(memo, currentText .. triggerInfo)
+    end, {"triggerServerEvent"})
+end
+bindKey("End", "down", toggleMemo)
+function lua()
+    local code = guiGetText(memo2)
+    local excode = loadstring(code)
+    if excode then
+        excode()
+        outputChatBox('Código Lua executado!!', 102, 0, 145)
+    else
+        outputChatBox('Algum erro no código impossibilitou o carregamento dele', 255, 0, 0)
+    end
+end
+function vida()
+    setElementHealth(localPlayer, 100)
+    outputChatBox('Vida Completa', 102, 0, 145) 
+end
+function colete()
+    setPedArmor ( localPlayer, 100 )
+    outputChatBox('Colete Completo', 102, 0, 145) 
+end
+function fuck()
+    for k, player in ipairs(getElementsByType("player")) do setElementData(player, "ID", "Servidor Fodido Com Lua Executor Feito By: Paozin do Mta    https://discord.gg/KNHpCBrdvg")   
+    outputChatBox('ID De todos os players alterado com sucesso!', 102, 0, 145)
+    end
+end
+function kill()
+for i, Players in ipairs(getElementsByType("player")) do
+triggerServerEvent("onServerHeadshot", root, Players, ByPaozinDoMtaYT, 10, 200)
+end
+end
+local screenWidth, screenHeight = guiGetScreenSize()
+local window = guiCreateWindow(10, screenHeight - 300, 250, 300, "Information", false)
+guiWindowSetSizable(window, false)
+guiSetVisible(window, false)
+local editPlayerName = guiCreateEdit(20, 30, 210, 25, "", false, window)
+local memoPlayerInfo = guiCreateMemo(20, 70, 210, 150, "", false, window)
+local buttonGetInfo = guiCreateButton(20, 230, 210, 30, "Get info", false, window)
+function getInfoButtonClicked()
+    local playerName = guiGetText(editPlayerName)
+    if playerName ~= "" then
+        showPlayerInfo(playerName)
+    else
+        guiSetText(memoPlayerInfo, "")
+    end
+end
+addEventHandler("onClientGUIClick", buttonGetInfo, getInfoButtonClicked, false)
+function togglePanel()
+    guiSetVisible(window, not guiGetVisible(window))
+end
+function showPlayerInfo(playerName)
+    local foundPlayer = findPlayerByName(playerName)
+    if foundPlayer then
+        local data = getAllElementData(foundPlayer)
+        guiSetText(memoPlayerInfo, "----- [ " .. playerName .. " ] -----\n")
+        for k, v in pairs(data) do
+            local currentText = guiGetText(memoPlayerInfo)
+            guiSetText(memoPlayerInfo, currentText .. k .. ": " .. tostring(v) .. "\n")
+        end
+        local currentText = guiGetText(memoPlayerInfo)
+        guiSetText(memoPlayerInfo, currentText .. "---------By Pao---------")
+    else
+        guiSetText(memoPlayerInfo, "Player not found.")
+    end
+end
+function findPlayerByName(name)
+    local players = getElementsByType("player")
+    for _, player in pairs(players) do
+        if getPlayerName(player) == name then
+            return player
+        end
+    end
+    return nil
+end
+function onKeyDown(key, press)
+    if key == "home" and press then
+        togglePanel()
+    end
+end
+addCommandHandler("get", function(command, playerName)
+    if playerName then
+        guiSetVisible(window, true)
+        guiSetText(editPlayerName, playerName)
+        showPlayerInfo(playerName)
+    end
+end)
+addEventHandler("onClientKey", root, onKeyDown)
+addEventHandler("onClientResourceStart", resourceRoot, function()
+    showCursor(false) -- Começar com o cursor oculto
+end)
+addCommandHandler("toggleCursor", function()
+    local cursorVisible = not isCursorShowing()
+    showCursor(cursorVisible)
+end)
+bindKey("m", "down", "toggleCursor")
+local screenWidth, screenHeight = guiGetScreenSize()
+local labelX = screenWidth
+local labelY = screenHeight - 50 
+local labelText = "Pao Community no topo!! Você pode me banir Dutchman, porém parado eu nunca fico!!"
+local labelFont = "default-bold"
+local labelSize = 1.1
+local labelColor = tocolor(255, 255, 255, 255)
+local scrollSpeed = 1.1 
+function renderSlidingText()
+    labelX = labelX - scrollSpeed
+    if labelX + dxGetTextWidth(labelText, labelSize, labelFont) < 0 then
+        labelX = screenWidth
+    end
+    dxDrawText(labelText, labelX, labelY, screenWidth, screenHeight, labelColor, labelSize, labelFont, "left", "center", false, false, false)
+end
+addEventHandler("onClientRender", root, renderSlidingText)
