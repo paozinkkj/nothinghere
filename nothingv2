@@ -1,0 +1,494 @@
+janela = guiCreateWindow(0.24, 0.11, 0.55, 0.75, "!!!!!!!!!!!", true)
+guiWindowSetMovable(janela, false)
+guiWindowSetSizable(janela, false)
+guiSetProperty(janela, "CaptionColour", "FFFF0000")
+labeu1 = guiCreateLabel(0.05, 0.10, 0.17, 0.03, "Join our Discord:", true, janela)
+labeu2 = guiCreateLabel(0.05, 0.19, 0.24, 0.03, "Únete a nuestro Discord:", true, janela)
+labeu3 = guiCreateLabel(0.05, 0.15, 0.24, 0.03, "Entre no nosso Discord:", true, janela)
+labeu4 = guiCreateLabel(0.05, 0.24, 0.37, 0.03, "Присоединяйтесь к нашему Discord:", true, janela)
+editi1 = guiCreateEdit(0.22, 0.09, 0.28, 0.04, "discord.gg/BXA2ZCqBSW", true, janela)
+editi2 = guiCreateEdit(0.29, 0.14, 0.28, 0.04, "discord.gg/BXA2ZCqBSW", true, janela)
+editi3 = guiCreateEdit(0.29, 0.18, 0.28, 0.04, "discord.gg/BXA2ZCqBSW", true, janela)
+editi4 = guiCreateEdit(0.42, 0.23, 0.28, 0.04, "discord.gg/BXA2ZCqBSW", true, janela)
+labeu5 = guiCreateLabel(0.02, 0.37, 0.96, 0.24, "EN: Join the Discord to stay updated on news and paid code giveaways. \n \nES: Únete al Discord para estar al tanto de las actualizaciones y sorteos de códigos pagos.  \n \nPTBR: Entre no Discord para ficar por dentro das atualizações e sorteios de códigos pagos.  \n \nRU: Присоединяйтесь к Discord, чтобы быть в курсе обновлений и розыгрышей платных кодов.", true, janela)
+butaum = guiCreateButton(0.07, 0.73, 0.86, 0.18, "Copy Discord / Close", true, janela)
+guiSetProperty(butaum, "NormalTextColour", "FFFF0000")  
+
+addEventHandler("onClientGUIClick", butaum, function()
+    setClipboard("discord.gg/BXA2ZCqBSW")
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Discord Link Copy", 255, 255, 255, true)
+    guiSetVisible(janela, false)
+    destroyElement(janela)
+end, false)  
+
+
+    GUIEditor = {
+        tab = {},
+        tabpanel = {},
+        label = {},
+        button = {},
+        window = {},
+        memo = {}
+    }
+    local ativo = false
+    local memo
+    local memo2
+    function paolua()
+        if ativo == false then
+            ativo = true
+            showCursor(true)  
+            GUIEditor.window[1] = guiCreateWindow(0.68, 0.54, 0.33, 0.42, "Dev Panel", true)
+            guiWindowSetSizable(GUIEditor.window[1], false)
+            GUIEditor.tabpanel[1] = guiCreateTabPanel(0.04, 0.12, 0.94, 0.85, true, GUIEditor.window[1])
+            GUIEditor.tab[1] = guiCreateTab("Get Trigger", GUIEditor.tabpanel[1])
+            memo = guiCreateMemo(0.02, 0.04, 0.97, 0.92, "By Paozin Do Mta YT", true, GUIEditor.tab[1])
+            GUIEditor.tab[2] = guiCreateTab("Lua Executor", GUIEditor.tabpanel[1])
+            memo2 = guiCreateMemo(0.03, 0.06, 0.95, 0.72, "Insira o código aqui!!", true, GUIEditor.tab[2])
+            GUIEditor.button[1] = guiCreateButton(0.07, 0.82, 0.84, 0.14, "Executar!!", true, GUIEditor.tab[2])
+            guiSetFont(GUIEditor.button[1], "default-bold-small")
+            guiSetProperty(GUIEditor.button[1], "NormalTextColour", "FF23FE00")
+            addEventHandler('onClientGUIClick', GUIEditor.button[1], lua, false)
+            GUIEditor.tab[3] = guiCreateTab("Player", GUIEditor.tabpanel[1])
+            GUIEditor.button[2] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "Puxar Vida", true, GUIEditor.tab[3])
+            GUIEditor.button[3] = guiCreateButton(0.02, 0.45, 0.35, 0.14, "Puxar Colete", true, GUIEditor.tab[3])
+            GUIEditor.button[4] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "Fuck ID", true, GUIEditor.tab[3])
+            GUIEditor.button[5] = guiCreateButton(0.62, 0.45, 0.35, 0.14, "Kill All", true, GUIEditor.tab[3])
+            GUIEditor.label[1] = guiCreateLabel(0.10, 0.15, 0.21, 0.08, "Local Player", true, GUIEditor.tab[3])
+            guiLabelSetColor(GUIEditor.label[1], 35, 254, 0)
+            GUIEditor.label[2] = guiCreateLabel(0.70, 0.15, 0.21, 0.08, "Server Fuck", true, GUIEditor.tab[3])
+            guiLabelSetColor(GUIEditor.label[2], 35, 254, 0)
+            GUIEditor.label[3] = guiCreateLabel(0.82, 0.22, 0.23, 0.06, "(alguns servers)", true, GUIEditor.tab[3])
+            guiSetFont(GUIEditor.label[3], "default-small")
+            GUIEditor.tab[4] = guiCreateTab("ESP", GUIEditor.tabpanel[1])
+            GUIEditor.button[6] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "ESP Wallhack", true, GUIEditor.tab[4])
+            GUIEditor.button[7] = guiCreateButton(0.02, 0.45, 0.35, 0.14, "ESP Veículos", true, GUIEditor.tab[4])
+            GUIEditor.button[8] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "ESP Line", true, GUIEditor.tab[4])
+            GUIEditor.button[9] = guiCreateButton(0.62, 0.45, 0.35, 0.14, "ESP Object", true, GUIEditor.tab[4])
+            GUIEditor.tab[5] = guiCreateTab("Troll", GUIEditor.tabpanel[1])
+            GUIEditor.button[10] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "RPG Flood", true, GUIEditor.tab[5])
+            GUIEditor.button[11] = guiCreateButton(0.02, 0.45, 0.35, 0.14, "Gas Flood", true, GUIEditor.tab[5])
+            GUIEditor.button[12] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "Light Flood", true, GUIEditor.tab[5])
+            guiLabelSetColor(GUIEditor.label[3], 255, 0, 0)
+            addEventHandler('onClientGUIClick', GUIEditor.button[2], vida, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[3], colete, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[4], fuck, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[5], kill, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[6], toggleWH, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[7], toggleESP5, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[8], toggleWallHack, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[9], toggleWallHackId, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[10], boomNearby, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[11], boomNearby2, false)
+            addEventHandler('onClientGUIClick', GUIEditor.button[12], boomNearby3, false)
+        else
+            ativo = false
+            showCursor(false)  
+            guiSetVisible(GUIEditor.window[1], false)
+        end
+    end
+    bindKey('end', 'down',  paolua)
+    function toggleMemo()
+        addDebugHook("preFunction", function(sourceResource, functionName, isAllowedByACL, luaFilename, luaLineNumber, ...)
+            local args = {...}
+            local triggerInfo = "Função: " .. tostring(functionName) .. "\n"
+            triggerInfo = triggerInfo .. "Arquivo de onde veio: " .. luaFilename .. "\n"
+            triggerInfo = triggerInfo .. "Linha onde é localizada: " .. luaLineNumber .. "\n"
+            triggerInfo = triggerInfo .. "Trigger: " .. inspect(args) .. "\n\n"
+            if memo == nil then
+                memo = guiCreateMemo(0, 0, 500, 500, "", false)
+                guiBringToFront(memo)
+            end
+            local currentText = guiGetText(memo)
+            guiSetText(memo, currentText .. triggerInfo)
+        end, {"triggerServerEvent"})
+    end
+    bindKey("End", "down", toggleMemo)
+    function lua()
+        local code = guiGetText(memo2)
+        local excode = loadstring(code)
+        if excode then
+            excode()
+            outputChatBox('#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Código Lua executado!!', 255, 255, 255, true)
+        else
+            outputChatBox('#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Algum erro no código impossibilitou o carregamento dele', 255, 255, 255, true)
+        end
+    end
+    function vida()
+        setElementHealth(localPlayer, 100)
+        outputChatBox('#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Vida Completa', 255, 255, 255, true) 
+    end
+    function colete()
+        setPedArmor ( localPlayer, 100 )
+        outputChatBox('#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Colete Completo', 255, 255, 255, true) 
+    end
+    function fuck()
+        for k, player in ipairs(getElementsByType("player")) do setElementData(player, "ID", "Servidor Fodido Com Lua Executor Feito By: Paozin do Mta    https://discord.gg/KNHpCBrdvg")   
+        outputChatBox('#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ID De todos os players alterado com sucesso!', 255, 255, 255, true)
+        end
+    end
+    function kill()
+    for i, Players in ipairs(getElementsByType("player")) do
+    triggerServerEvent("onServerHeadshot", root, Players, ByPaozinDoMtaYT, 10, 200)
+    end
+    end
+    local screenWidth, screenHeight = guiGetScreenSize()
+    local window = guiCreateWindow(10, screenHeight - 300, 250, 300, "Information", false)
+    guiWindowSetSizable(window, false)
+    guiSetVisible(window, false)
+    local editPlayerName = guiCreateEdit(20, 30, 210, 25, "", false, window)
+    local memoPlayerInfo = guiCreateMemo(20, 70, 210, 150, "", false, window)
+    local buttonGetInfo = guiCreateButton(20, 230, 210, 30, "Get info", false, window)
+    function getInfoButtonClicked()
+        local playerName = guiGetText(editPlayerName)
+        if playerName ~= "" then
+            showPlayerInfo(playerName)
+        else
+            guiSetText(memoPlayerInfo, "")
+        end
+    end
+    addEventHandler("onClientGUIClick", buttonGetInfo, getInfoButtonClicked, false)
+    function togglePanel()
+        guiSetVisible(window, not guiGetVisible(window))
+    end
+    function showPlayerInfo(playerName)
+        local foundPlayer = findPlayerByName(playerName)
+        if foundPlayer then
+            local data = getAllElementData(foundPlayer)
+            guiSetText(memoPlayerInfo, "----- [ " .. playerName .. " ] -----\n")
+            for k, v in pairs(data) do
+                local currentText = guiGetText(memoPlayerInfo)
+                guiSetText(memoPlayerInfo, currentText .. k .. ": " .. tostring(v) .. "\n")
+            end
+            local currentText = guiGetText(memoPlayerInfo)
+            guiSetText(memoPlayerInfo, currentText .. "---------By Pao---------")
+        else
+            guiSetText(memoPlayerInfo, "Player not found.")
+        end
+    end
+    function findPlayerByName(name)
+        local players = getElementsByType("player")
+        for _, player in pairs(players) do
+            if getPlayerName(player) == name then
+                return player
+            end
+        end
+        return nil
+    end
+    function onKeyDown(key, press)
+        if key == "home" and press then
+            togglePanel()
+        end
+    end
+    addCommandHandler("get", function(command, playerName)
+        if playerName then
+            guiSetVisible(window, true)
+            guiSetText(editPlayerName, playerName)
+            showPlayerInfo(playerName)
+        end
+    end)
+    addEventHandler("onClientKey", root, onKeyDown)
+    addEventHandler("onClientResourceStart", resourceRoot, function()
+        showCursor(false) -- Começar com o cursor oculto
+    end)
+    addCommandHandler("toggleCursor", function()
+        local cursorVisible = not isCursorShowing()
+        showCursor(cursorVisible)
+    end)
+    bindKey("m", "down", "toggleCursor")
+    WallHack = {}
+    WallHack.boneRelations = {
+        [8] = {
+            [4] = {
+                [22] = {
+                    [23] = {
+                        [24] = false,
+                    },
+                },
+                [32] = {
+                    [33] = {
+                        [34] = false,
+                    },
+                },
+                [3] = {
+                    [2] = {
+                        [1] = {
+                            [51] = {
+                                [52] = {
+                                    [53] = {
+                                        [54] = false,
+                                    },
+                                },
+                            },
+                            [41] = {
+                                [42] = {
+                                    [43] = {
+                                        [44] = false,                                                 
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            [6] = { -- New connections for bone 8
+                [7] = {
+                    [8] = false,
+                },
+            },
+        },
+        [6] = { -- New connections for bone 6
+            [7] = {
+                [8] = false,
+            },
+        },
+        [7] = { -- New connections for bone 7
+            [8] = {
+                [6] = false,
+            },
+        },
+    }
+    WallHack.state = false
+    WallHack.state = false
+    WallHack.lastToggle = 0
+    WallHack.toggleCooldown = 100
+    function toggleWH()
+        local currentTime = getTickCount()
+        if currentTime - WallHack.lastToggle < WallHack.toggleCooldown then
+            return
+        end
+        WallHack.lastToggle = currentTime
+        WallHack.state = not WallHack.state
+        outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: WallHack #00b34aOFF", 255, 255, 255, true)
+        removeEventHandler("onClientRender", root, WallHack.render)
+        if WallHack.state then
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: WallHack #00b34aON", 255, 255, 255, true)
+            addEventHandler("onClientRender", root, WallHack.render)
+        end
+    end
+    WallHack.render = function()
+        local x1, y1, z1 = getCameraMatrix()
+        for _, player in pairs(getElementsByType("player")) do
+            local x, y, z = getElementPosition(player)
+            local dist = getDistanceBetweenPoints3D(x1, y1, z1, x, y, z)
+            if dist <= 150 then
+                local scx, scy = getScreenFromWorldPosition(x, y, z, 0.02)
+                if scx and scy then
+                    for boneId, boneRelation in pairs(WallHack.boneRelations) do
+                        WallHack.drawNames(player, dist)
+                        WallHack.drawBones(player, boneId, boneRelation, dist)
+                    end
+                end
+            end
+        end
+    end
+    WallHack.drawNames = function(player, dist)
+        local headX, headY, headZ = getPedBonePosition(player, 8)
+        headZ = headZ + 0.5
+        local scrHeadX, scrHeadY = getScreenFromWorldPosition(headX, headY, headZ, 0.02)
+        if scrHeadX and scrHeadY then
+            local name = getPlayerName(player)
+            local health = getElementHealth(player)
+            local armor = getPedArmor(player)
+            local weapon = getPedWeapon(player)
+            local healthR, healthG, healthB = interpolateBetween(255, 89, 89, 125, 197, 118, (health / 100), "Linear")
+            local armorR, armorG, armorB = interpolateBetween(180, 180, 180, 50, 179, 239, (armor / 100), "Linear")
+            local text = name .. "\n" .. string.format("#FF5959[%d%%] #B4B4B4[%d%%]", health, armor)
+            if weapon then
+                local weaponName = getWeaponNameFromID(weapon)
+                text = text .. "\n[" .. weaponName .. "]"
+            end
+            local scale = interpolateBetween(1.3, 0, 0, 0.1, 0, 0, (dist / 150), "Linear")
+            dxDrawText(text:gsub("#%x%x%x%x%x%x", ""), scrHeadX + 1, scrHeadY + 1, scrHeadX + 1, scrHeadY + 1, tocolor(0, 0, 0, 255), scale, "default-bold", "center", "bottom", false, false, true, true)
+            dxDrawText(text, scrHeadX, scrHeadY, scrHeadX, scrHeadY, tocolor(255, 255, 255, 255), scale, "default-bold", "center", "bottom", false, false, true, true)
+        end
+    end
+    WallHack.drawBones = function(player, _boneId, _boneRelation, dist)
+        if not (player and _boneId and _boneRelation) then
+            return
+        end
+        local rootX, rootY, rootZ = getPedBonePosition(player, _boneId)
+        for boneId, boneRelation in pairs(_boneRelation) do
+            local boneX, boneY, boneZ = getPedBonePosition(player, boneId)
+            dxDrawLine3D(rootX, rootY, rootZ, boneX, boneY, boneZ, tocolor(255, 255, 255, 255), (dist / 150) * 15, true)
+            if boneRelation then
+                WallHack.drawBones(player, boneId, boneRelation, dist)
+            end
+        end
+    end
+    local screenWidth, screenHeight = guiGetScreenSize()
+    local offsetX = 10
+    local offsetY = 10
+    local maxDistance = 150
+    local isWallHackActive = false
+    function drawLinesToPlayers()
+        local playerX, playerY, playerZ = getElementPosition(localPlayer)
+        local players = getElementsByType("player")
+        for _, player in ipairs(players) do
+            if player ~= localPlayer then
+                local targetX, targetY, targetZ = getElementPosition(player)
+                local distance = getDistanceBetweenPoints3D(playerX, playerY, playerZ, targetX, targetY, targetZ)
+                if distance <= maxDistance then
+                    local screenX, screenY = getScreenFromWorldPosition(targetX, targetY, targetZ + 1)
+                    if screenX and screenY then
+                        dxDrawLine(offsetX, offsetY, screenX, screenY, tocolor(255, 0, 0, 255), 2)
+                    end
+                end
+            end
+        end
+    end
+    function toggleWallHack()
+        isidActive = not isidActive
+        if isidActive then
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ESP Line #00b34aON", 255, 255, 255, true)
+        else
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ESP Line #00b34aOFF", 255, 255, 255, true)
+        end
+    end
+    local id = false
+    function drawObjectIDsInRange()
+        if not id then return end
+        local playerX, playerY, playerZ = getElementPosition(localPlayer)
+        local objects = getElementsByType("object")
+        for _, object in ipairs(objects) do
+            local objectX, objectY, objectZ = getElementPosition(object)
+            local distance = getDistanceBetweenPoints3D(playerX, playerY, playerZ, objectX, objectY, objectZ)
+            if distance <= 80 then
+                local screenX, screenY = getScreenFromWorldPosition(objectX, objectY, objectZ + 1)
+                if screenX and screenY then
+                    local objectID = getElementModel(object)
+                    dxDrawText("Object ID: " .. objectID, screenX, screenY, screenX, screenY, tocolor(255, 255, 255), 1, "default-bold", "center", "center")
+                end
+            end
+        end
+    end
+    function toggleWallHackId()
+        id = not id
+        if id then
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ESP Object #00b34aON", 255, 255, 255, true)
+        else
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ESP Object #00b34aOFF", 255, 255, 255, true)
+        end
+    end
+    addEventHandler("onClientRender", root, drawObjectIDsInRange)
+    local espActive = false
+    local espRange = 150
+    function renderVehicleESP()
+        if espActive then
+            local localPlayer = getLocalPlayer()
+            local localX, localY, localZ = getElementPosition(localPlayer)
+            local vehicles = getElementsWithinRange(localX, localY, localZ, espRange, "vehicle")
+            for i, vehicle in ipairs(vehicles) do
+                local vehicleX, vehicleY, vehicleZ = getElementPosition(vehicle)
+                local distance = getDistanceBetweenPoints3D(localX, localY, localZ, vehicleX, vehicleY, vehicleZ)
+                local screenX, screenY, onScreen = getScreenFromWorldPosition(vehicleX, vehicleY, vehicleZ + 1.0)
+                if onScreen then
+                    local name = getVehicleName(vehicle)
+                    local fontSize = 1.2  
+                    local textColor = tocolor(255, 255, 255, 200)  
+                    dxDrawText(name, screenX, screenY - 55, screenX, screenY - 40, textColor, fontSize, "default", "center", "center")
+                    dxDrawText(string.format("%.2f m", distance), screenX, screenY - 40, screenX, screenY - 25, textColor, fontSize, "default", "center", "center")
+                end
+            end
+        end
+    end
+    function toggleESP5()
+        espActive = not espActive
+        if espActive then
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ESP Veículos #00b34aON", 255, 255, 255, true)
+        else
+            outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: ESP Veículos #00b34aOFF", 255, 255, 255, true)
+        end
+    end
+    addEventHandler("onClientRender", root, renderVehicleESP)
+    local countdownActive = false
+
+function startCountdown()
+    if countdownActive then return end -- Evita iniciar um novo countdown se já houver um ativo
+    countdownActive = true
+
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Countdown de 3 segundos iniciado!", 255, 255, 255, true)
+    
+    -- Timer de 3 segundos
+    setTimer(function()
+        outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Countdown finalizado!", 255, 255, 255, true)
+        countdownActive = false
+    end, 3000, 1) -- 3000 milissegundos = 3 segundos
+end
+
+function boomNearby()
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: RPG's Direcionados #00b34a A caminho!", 255, 255, 255, true)
+    local players = getElementsByType('player')
+    for i, player in ipairs(players) do
+        if player ~= localPlayer then
+            local x, y, z = getElementPosition(player)
+            throwMolotove1(x, y, z)
+        end
+    end
+    startCountdown() -- Inicia o countdown
+end
+
+function throwMolotove1(x, y, z)
+    for i = 1, 50 do 
+        setTimer(function()
+            createProjectile(localPlayer, 19, x, y, z, 100.0) 
+        end, i * 2, 1)
+    end
+end
+
+function boomNearby2()
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Gases Direcionado #00b34a A caminho! ", 255, 255, 255, true)
+    local players = getElementsByType('player')
+    for i, player in ipairs(players) do
+        if player ~= localPlayer then
+            local x, y, z = getElementPosition(player)
+            throwMolotove2(x, y, z)
+        end
+    end
+    startCountdown() -- Inicia o countdown
+end
+
+function throwMolotove2(x, y, z)
+    for i = 1, 50 do 
+        setTimer(function()
+            createProjectile(localPlayer, 17, x, y, z, 100.0) 
+        end, i * 2, 1)
+    end
+end
+
+function boomNearby3()
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Light Direcionado (Não Finalizado) #00b34aON", 255, 255, 255, true)
+    local players = getElementsByType('player')
+    for i, player in ipairs(players) do
+        if player ~= localPlayer then
+            local x, y, z = getElementPosition(player)
+            throwMolotove3(x, y, z)
+        end
+    end
+    startCountdown() -- Inicia o countdown
+end
+
+function throwMolotove3(x, y, z)
+    for i = 1, 50 do 
+        setTimer(function()
+            createProjectile(localPlayer, 58, x, y, z, 100.0) 
+        end, i * 2, 1)
+    end
+end
+
+
+    local screenWidth, screenHeight = guiGetScreenSize()
+    local labelX = screenWidth
+    local labelY = screenHeight - 50 
+    local labelText = "Pao Community no topo!! Você pode me banir Dutchman, porém parado eu nunca fico!!"
+    local labelFont = "default-bold"
+    local labelSize = 1.1
+    local labelColor = tocolor(255, 255, 255, 255)
+    local scrollSpeed = 1.1 
+    function renderSlidingText()
+        labelX = labelX - scrollSpeed
+        if labelX + dxGetTextWidth(labelText, labelSize, labelFont) < 0 then
+            labelX = screenWidth
+        end
+        dxDrawText(labelText, labelX, labelY, screenWidth, screenHeight, labelColor, labelSize, labelFont, "left", "center", false, false, false)
+    end
+    addEventHandler("onClientRender", root, renderSlidingText)
