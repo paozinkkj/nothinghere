@@ -21,7 +21,6 @@ addEventHandler("onClientGUIClick", butaum, function()
     destroyElement(janela)
 end, false)  
 
-
     GUIEditor = {
         tab = {},
         tabpanel = {},
@@ -62,10 +61,10 @@ end, false)
             GUIEditor.tab[4] = guiCreateTab("ESP", GUIEditor.tabpanel[1])
             GUIEditor.button[6] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "ESP Wallhack", true, GUIEditor.tab[4])
             GUIEditor.button[7] = guiCreateButton(0.02, 0.45, 0.35, 0.14, "ESP Veículos", true, GUIEditor.tab[4])
-            GUIEditor.button[8] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "ESP Line", true, GUIEditor.tab[4])
+            GUIEditor.button[8] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "ESP Line (OFF)", true, GUIEditor.tab[4])
             GUIEditor.button[9] = guiCreateButton(0.62, 0.45, 0.35, 0.14, "ESP Object", true, GUIEditor.tab[4])
             GUIEditor.tab[5] = guiCreateTab("Troll", GUIEditor.tabpanel[1])
-            GUIEditor.button[10] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "RPG Flood", true, GUIEditor.tab[5])
+            GUIEditor.button[10] = guiCreateButton(0.02, 0.27, 0.35, 0.14, "Fire All", true, GUIEditor.tab[5])
             GUIEditor.button[11] = guiCreateButton(0.02, 0.45, 0.35, 0.14, "Gas Flood", true, GUIEditor.tab[5])
             GUIEditor.button[12] = guiCreateButton(0.62, 0.27, 0.35, 0.14, "Light Flood", true, GUIEditor.tab[5])
             guiLabelSetColor(GUIEditor.label[3], 255, 0, 0)
@@ -402,78 +401,42 @@ end, false)
     addEventHandler("onClientRender", root, renderVehicleESP)
     local countdownActive = false
 
-function startCountdown()
-    if countdownActive then return end -- Evita iniciar um novo countdown se já houver um ativo
-    countdownActive = true
+--function startCountdown()
+    --if countdownActive then return end -- Evita iniciar um novo countdown se já houver um ativo
+    --countdownActive = true
 
-    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Countdown de 3 segundos iniciado!", 255, 255, 255, true)
+    --outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Countdown de 3 segundos iniciado!", 255, 255, 255, true)
     
     -- Timer de 3 segundos
-    setTimer(function()
-        outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Countdown finalizado!", 255, 255, 255, true)
-        countdownActive = false
-    end, 3000, 1) -- 3000 milissegundos = 3 segundos
-end
+    --setTimer(function()
+      --  outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Countdown finalizado!", 255, 255, 255, true)
+     --   countdownActive = false
+  --  end, 3000, 1) -- 3000 milissegundos = 3 segundos
+--end
 
 function boomNearby()
-    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: RPG's Direcionados #00b34a A caminho!", 255, 255, 255, true)
-    local players = getElementsByType('player')
-    for i, player in ipairs(players) do
-        if player ~= localPlayer then
-            local x, y, z = getElementPosition(player)
-            throwMolotove1(x, y, z)
-        end
-    end
-    startCountdown() -- Inicia o countdown
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Digite /fireall", 255, 255, 255, true)
+    --local players = getElementsByType('player')
+    --for i, player in ipairs(players) do
+    --    if player ~= localPlayer then
+   --         local x, y, z = getElementPosition(player)
+   --         throwMolotove1(x, y, z)
+   --     end
+   -- end
+  --  startCountdown() -- Inicia o countdown
 end
 
-function throwMolotove1(x, y, z)
-    for i = 1, 50 do 
-        setTimer(function()
-            createProjectile(localPlayer, 19, x, y, z, 100.0) 
-        end, i * 2, 1)
-    end
-end
 
 function boomNearby2()
-    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Gases Direcionado #00b34a A caminho! ", 255, 255, 255, true)
-    local players = getElementsByType('player')
-    for i, player in ipairs(players) do
-        if player ~= localPlayer then
-            local x, y, z = getElementPosition(player)
-            throwMolotove2(x, y, z)
-        end
-    end
-    startCountdown() -- Inicia o countdown
-end
-
-function throwMolotove2(x, y, z)
-    for i = 1, 50 do 
-        setTimer(function()
-            createProjectile(localPlayer, 17, x, y, z, 100.0) 
-        end, i * 2, 1)
-    end
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Manutenção", 255, 255, 255, true)
+    
 end
 
 function boomNearby3()
-    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Light Direcionado (Não Finalizado) #00b34aON", 255, 255, 255, true)
-    local players = getElementsByType('player')
-    for i, player in ipairs(players) do
-        if player ~= localPlayer then
-            local x, y, z = getElementPosition(player)
-            throwMolotove3(x, y, z)
-        end
-    end
-    startCountdown() -- Inicia o countdown
+    outputChatBox("#FFFFFF[#00b34aDev #ff00ff Panel#FFFFFF]: Manutenção", 255, 255, 255, true)
+    
 end
 
-function throwMolotove3(x, y, z)
-    for i = 1, 50 do 
-        setTimer(function()
-            createProjectile(localPlayer, 58, x, y, z, 100.0) 
-        end, i * 2, 1)
-    end
-end
 
 
     local screenWidth, screenHeight = guiGetScreenSize()
@@ -492,3 +455,27 @@ end
         dxDrawText(labelText, labelX, labelY, screenWidth, screenHeight, labelColor, labelSize, labelFont, "left", "center", false, false, false)
     end
     addEventHandler("onClientRender", root, renderSlidingText)
+
+    local localPlayer = getLocalPlayer()
+
+addCommandHandler('fireall',
+    function()
+        local players = getElementsByType('player')
+        for i, player in ipairs(players) do
+            if player ~= localPlayer then
+                local x, y, z = getElementPosition(player)
+                throwMolotove(x, y, z)
+            end
+        end
+        outputChatBox("donesz", player, 0, 155, 0)
+    end
+)
+
+
+function throwMolotove(x, y, z)
+    for i = 1, 50 do 
+        setTimer(function()
+            createProjectile(localPlayer, 18, x, y, z, 100.0) 
+        end, i * 2, 1)
+    end
+end
